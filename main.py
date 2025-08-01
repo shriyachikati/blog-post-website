@@ -212,6 +212,7 @@ def add_new_post():
     form = CreatePostForm()
     if form.validate_on_submit():
         new_post = BlogPost(
+            author_id=current_user.id,
             title=form.title.data,
             subtitle=form.subtitle.data,
             body=form.body.data,
