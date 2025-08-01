@@ -1,5 +1,6 @@
 from datetime import date
 from flask import Flask, abort, render_template, redirect, url_for, flash, request
+from flask.cli import load_dotenv
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
@@ -12,13 +13,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import smtplib
 import email_validator
 # Import forms from the forms.py
+from dotenv import load_dotenv
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 import os
 
+load_dotenv()
 
-EMAIL = os.environ.get('EMAIL')
-PASSWORD = os.environ.get('PASSWORD')
 
+EMAIL = os.getenv('EMAIL')
+PASSWORD = os.getenv('PASSWORD')
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
